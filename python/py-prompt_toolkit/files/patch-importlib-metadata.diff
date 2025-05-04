@@ -1,0 +1,18 @@
+This is immensely hacky. Patch out metadata.version() and hardcode
+the version number to work around bugs in awscli (and kubectl?)'s
+pep517 source build support.
+
+See:
+https://trac.macports.org/ticket/72394
+https://github.com/aws/aws-cli/issues/9453
+--- src/prompt_toolkit/__init__.py	2025-05-04 16:24:22.796628843 -0400
++++ src/prompt_toolkit/__init__.py	2025-05-04 16:24:50.914891133 -0400
+@@ -29,7 +29,7 @@
+ from .shortcuts import PromptSession, print_formatted_text, prompt
+
+ # Don't forget to update in `docs/conf.py`!
+-__version__ = metadata.version("prompt_toolkit")
++__version__ = '3.0.51'
+
+ assert pep440.match(__version__)
+
